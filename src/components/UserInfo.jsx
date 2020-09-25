@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { UserContext } from "../Contexts/UserContext";
+import { UserContext } from "../contexts/UserContext";
 
 export default function UserInfo() {
   const { userInfo } = useContext(UserContext);

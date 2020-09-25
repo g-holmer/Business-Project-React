@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { Switch, Route } from "react-router-dom";
-import RegisterInput from "./Components/Register/RegisterInput";
-import ActivateUser from "./Components/ActivateUser";
-import Logout from "./Components/LogoutUser";
-import CustomerDetail from "./Components/Customer/CustomerDetail";
+import RegisterInput from "./components/Register/RegisterInput";
+import ActivateUser from "./components/ActivateUser";
+import Logout from "./components/LogoutUser";
+import CustomerDetail from "./components/Customer/CustomerDetail";
 import Home from "./Pages/Home";
-import { CustomerContext } from "./Contexts/CustomerContext";
-import { UserContext } from "./Contexts/UserContext";
-import Layout from "./Components/Layout/Layout";
+import { CustomerContext } from "./contexts/CustomerContext";
+import { UserContext } from "./contexts/UserContext";
+import Layout from "./components/Layout/Layout";
 import ActivateLinkPage from "./Pages/ActivateLinkPage";
 function App() {
   const [customers, setCustomers] = useState(0);

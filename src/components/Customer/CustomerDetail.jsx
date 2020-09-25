@@ -1,7 +1,7 @@
 import React, { useEffect, useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
-import UserKit from "../../Data/UserKit";
-import { CustomerContext } from "../../Contexts/CustomerContext";
+import UserKit from "../../data/UserKit";
+import { CustomerContext } from "../../contexts/CustomerContext";
 import Button from "../../Styles/Button";
 import styled from "styled-components";
 
