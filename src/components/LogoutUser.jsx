@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import UserKit from "../data/UserKit";
+import UserKit from "../Data/UserKit";
 import { useHistory } from "react-router-dom";
 
 export default function LogoutUser() {

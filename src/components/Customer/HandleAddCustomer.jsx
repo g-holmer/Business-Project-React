@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
-import UserKit from "../../data/UserKit";
-import { CustomerContext } from "../../contexts/CustomerContext";
+import UserKit from "../../Data/UserKit";
+import { CustomerContext } from "../../Contexts/CustomerContext";
 import styled from "styled-components";
 import Button from "../../Styles/Button";
 

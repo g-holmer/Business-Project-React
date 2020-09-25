@@ -1,5 +1,5 @@
 import React from "react";
-import UserKit from "../../data/UserKit";
+import UserKit from "../../Data/UserKit";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import Button from "../../Styles/Button";

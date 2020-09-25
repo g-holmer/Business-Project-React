@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import UserKit from "../../data/UserKit";
+import UserKit from "../../Data/UserKit";
 
 export default function Navigation() {
   const userKit = new UserKit();

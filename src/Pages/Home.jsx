@@ -1,10 +1,10 @@
 import React, { useContext, useEffect } from "react";
-import AddCustomerInput from "../components/Customer/AddCustomerInput";
-import Customers from "../components/Customer/Customers";
-import UserInfo from "../components/UserInfo";
-import UserKit from "../data/UserKit";
-import { CustomerContext } from "../contexts/CustomerContext";
-import { UserContext } from "../contexts/UserContext";
+import AddCustomerInput from "../Components/Customer/AddCustomerInput";
+import Customers from "../Components/Customer/Customers";
+import UserInfo from "../Components/UserInfo";
+import UserKit from "../Data/UserKit";
+import { CustomerContext } from "../Contexts/CustomerContext";
+import { UserContext } from "../Contexts/UserContext";
 
 export default function Home() {
   const { setCustomers, reloadCustomer, setReloadCustomer } = useContext(CustomerContext);

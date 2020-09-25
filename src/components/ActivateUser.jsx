@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import UserKit from "../data/UserKit";
+import UserKit from "../Data/UserKit";
 import LoginUser from "./LoginUser";
 import Button from "../Styles/Button";
 
