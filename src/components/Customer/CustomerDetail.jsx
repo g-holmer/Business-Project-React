@@ -1,17 +1,20 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 import UserKit from "../../data/UserKit";
 import { CustomerContext } from "../../contexts/CustomerContext";
 import Button from "../../Styles/Button";
+import SubmitBtn from "../../Styles/InputBtn";
 import styled from "styled-components";
 
+import { useForm } from "react-hook-form";
+import CustomerInput from "./CustomerInput";
 export default function CustomerDetail({ match }) {
   const id = match.params.id;
   const index = match.params.index;
 
   const history = useHistory();
-  const { customers, setCustomers, setReloadCustomer } = useContext(CustomerContext);
-
+  const { customers, setReloadCustomer } = useContext(CustomerContext);
+  const [error, setError] = useState("");
   const name = customers && customers[index].name;
   const orgNr = customers && customers[index].organisationNr;
   const vatNr = customers && customers[index].vatNr;
@@ -21,101 +24,67 @@ export default function CustomerDetail({ match }) {
   const email = customers && customers[index].email;
   const phoneNumber = customers && customers[index].phoneNumber;
 
-  let [editName, setEditName] = useState(name);
-  let [editOrgNr, setEditOrgNr] = useState(orgNr);
-  let [editVatNr, setEditVatNr] = useState(vatNr);
-  let [editRef, setEditRef] = useState(reference);
-  let [editPaymentTerm, setEditPaymentTerm] = useState(paymentTerm);
-  let [editWebsite, setEditWebsite] = useState(website);
-  let [editEmail, setEditEmail] = useState(email);
-  let [editPhoneNumber, setEditPhoneNumber] = useState(phoneNumber);
-
   const userKit = new UserKit();
-  function getCustomerList() {
-    userKit
-      .getCustomerList()
-      .then((res) => res.json())
-      .then((data) => {
-        setCustomers(data.results);
-      });
-  }
 
   function deleteCustomer() {
     userKit.deleteCustomer(id);
     history.push("/login");
     setReloadCustomer(true);
   }
-  function editCustomer() {
+
+  const { register, handleSubmit, errors } = useForm();
+
+  function editCustomer(data) {
+    if (userKit.checkVatNr(data)) {
+      setError("VAT needs two characters followed by 10 numbers (eg. SE1234567890)");
+      return;
+    }
     userKit.editCustomer(
       id,
-      editName,
-      editOrgNr,
-      editVatNr,
-      editRef,
-      editPaymentTerm,
-      editWebsite,
-      editEmail,
-      editPhoneNumber
+      data.name,
+      data.orgNr,
+      data.vatNr,
+      data.reference,
+      data.paymentTerm,
+      data.website,
+      data.email,
+      data.phoneNumber
     );
     history.push("/login");
     setReloadCustomer(true);
+    setError("");
   }
-
-  useEffect(() => {
-    getCustomerList();
-    // eslint-disable-next-line
-  }, []);
 
   return (
     <div>
       <Button onClick={deleteCustomer}>Delete Customer</Button>
       <h1>{name}</h1>
 
-      <p>
-        Name: <input type="text" value={editName} onChange={(e) => setEditName(e.target.value)} />
-      </p>
-      <p>
-        Org nr:{" "}
-        <input type="text" value={editOrgNr} onChange={(e) => setEditOrgNr(e.target.value)} />
-      </p>
-      <p>
-        VAT: <input type="text" value={editVatNr} onChange={(e) => setEditVatNr(e.target.value)} />
-      </p>
-      <p>
-        Payment term:{" "}
-        <input
-          type="text"
-          value={editPaymentTerm}
-          onChange={(e) => setEditPaymentTerm(e.target.value)}
+      <form onSubmit={handleSubmit(editCustomer)}>
+        <CustomerInput
+          name={name}
+          orgNr={orgNr}
+          vatNr={vatNr}
+          paymentTerm={paymentTerm}
+          reference={reference}
+          website={website}
+          email={email}
+          phoneNumber={phoneNumber}
+          register={register}
+          error={error}
+          errors={errors}
         />
-      </p>
-      <p>
-        Reference:{" "}
-        <input type="text" value={editRef} onChange={(e) => setEditRef(e.target.value)} />
-      </p>
-      <p>
-        Website:{" "}
-        <input type="text" value={editOrgNr} onChange={(e) => setEditWebsite(e.target.value)} />
-      </p>
-      <p>
-        E-mail:{" "}
-        <input type="text" value={editEmail} onChange={(e) => setEditEmail(e.target.value)} />
-      </p>
-      <p>
-        Phone number:{" "}
-        <input
-          type="text"
-          value={editPhoneNumber}
-          onChange={(e) => setEditPhoneNumber(e.target.value)}
-        />
-      </p>
-      <FancyBtn onClick={editCustomer}>Update info</FancyBtn>
+        <FancyBtn type="submit" value="Update Info" />
+      </form>
     </div>
   );
 }
-const FancyBtn = styled(Button)`
-  background: linear-gradient(to bottom, #ffec64 5%, #ffab23 100%);
-  background-color: #ffec64;
+
+const FancyBtn = styled(SubmitBtn)`
+  box-shadow: inset 0px -3px 7px 0px #29bbff;
+  background: linear-gradient(to bottom, #2dabf9 5%, #0688fa 100%);
+  background-color: #2dabf9;
   text-decoration: none;
-  text-shadow: 0px 1px 0px #ffee66;
+  text-shadow: 0px 1px 0px #263666;
+  color: white;
 `;

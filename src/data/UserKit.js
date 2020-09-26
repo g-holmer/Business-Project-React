@@ -131,4 +131,16 @@ export default class {
       Authorization: `Bearer ${this.getToken()}`,
     };
   }
+  checkVatNr(data) {
+    let isNotCorrect = false;
+    let firstTwo = data.vatNr.substring(0, 2);
+    let lastTen = data.vatNr.substring(2, 12);
+    let isNum = /^\d+$/.test(firstTwo);
+    let isNotNum = /^\d+$/.test(lastTen);
+
+    if (data.vatNr.length < 12 || isNum || !isNotNum) {
+      isNotCorrect = true;
+    }
+    return isNotCorrect;
+  }
 }

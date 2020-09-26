@@ -39,7 +39,7 @@ const Main = styled.main`
     width: 150px;
     background-color: white;
     border: 1px solid black;
-    border-radius: 3px 0 0 3px;
+    border-radius: 3px;
     padding-left: 8px;
   }
 `;
