@@ -15,6 +15,7 @@ export default function CustomerDetail({ match }) {
   const history = useHistory();
   const { customers, setReloadCustomer } = useContext(CustomerContext);
   const [error, setError] = useState("");
+
   const name = customers && customers[index].name;
   const orgNr = customers && customers[index].organisationNr;
   const vatNr = customers && customers[index].vatNr;

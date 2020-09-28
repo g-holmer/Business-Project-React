@@ -7,7 +7,8 @@ export default function Customers() {
   return (
     <div>
       <h2>Customers</h2>
-      {customers.length ? (
+
+      {customers && customers.length ? (
         customers.map((customer, index) => {
           return (
             <div key={index}>

@@ -11,7 +11,7 @@ import SubmitBtn from "../Styles/InputBtn";
 export default function Home() {
   const { register, handleSubmit, errors } = useForm();
   const [error, setError] = useState("");
-  const { setCustomers, reloadCustomer, setReloadCustomer } = useContext(CustomerContext);
+  const { reloadCustomer, setReloadCustomer } = useContext(CustomerContext);
   const { setUserInfo } = useContext(UserContext);
 
   let name,
@@ -30,15 +30,6 @@ export default function Home() {
       .then((res) => res.json())
       .then((data) => {
         setUserInfo(data);
-      });
-  }
-  function getCustomerList() {
-    userKit
-      .getCustomerList()
-      .then((res) => res.json())
-      .then((data) => {
-        setCustomers(data.results);
-        setReloadCustomer(false);
       });
   }
 
@@ -69,7 +60,6 @@ export default function Home() {
 
   useEffect(() => {
     getUserInformation();
-    getCustomerList();
     // eslint-disable-next-line
   }, [reloadCustomer]);
 
