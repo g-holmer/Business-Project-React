@@ -4,7 +4,7 @@ The task is to create a project for small businesses, so that they can keep trac
 
 ## Contains: 
 *Create New User<br/>
-*Activate User
-*Home Screen
-*Detail view for a specific customer
-*Update Detail View
+*Activate User<br/>
+*Home Screen<br/>
+*Detail view for a specific customer<br/>
+*Update Detail View<br/>
